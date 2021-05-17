@@ -1,0 +1,8 @@
+{
+	"parent":"minecraft:block/cube_bottom_top",
+	"textures": {
+		"up": "javaengineering:block/thermal_block_top",
+		"down": "javaengineering:block/thermal_block_borrom",
+		"side": "javaengineering:block/thermal_block_face"
+	}
+}

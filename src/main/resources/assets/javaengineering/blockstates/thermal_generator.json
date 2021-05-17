@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"": {
+		"model":"javaengineering:block/thermal_generator"
+	}
+	},
+	"inventory": {
+		"model":"javaengineering:block/thermal_generator"
+	}
+}
