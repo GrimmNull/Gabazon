@@ -1,5 +1,10 @@
-This will be a simple mod in which I test different functionalities given by Forge.
-In the final stage it should contain 4 new blocks, one tool, and about 5 new recipes.
+Hey, kiddo! Have you ever lacked precious resources?
+Were you ever just a netherite ingot away from that long awaited armor?
+Maybe you were hungry and too bussy to cook your own food...
 
-Firstly, we'll have a thermal generator, which will generate energy when it has both cold and hot blocks beside it, 
-then some conducts to move the energy produced to a battery which can be connected to a console and a radio antenna just to look cool. 
+Well, I have the perfect solution just for you! 
+
+Gabazon is your friendly soulless company that is here to take all your mo... to bring you any item you need, anywhere you are (as long as you have a Gabazon station next to you)!
+Craft a wallet, collect money by killing mobs, sacrifice souls of thousands of monster to satisfy your desire to throw money at the screen!
+
+So what are you waiting for? Try today ands stay forever!
