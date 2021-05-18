@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": {
+      "model":"javaengineering:block/energy_pipe_off"
+    }
+  },
+  "on": {
+    "model":"javaengineering:block/energy_pipe_on"
+  },
+  "inventory": {
+    "model":"javaengineering:block/energy_pipe_off"
+  }
+}

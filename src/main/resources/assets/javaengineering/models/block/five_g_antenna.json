@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/antenna_texture",
-		"1": "block/antenna_butt",
-		"particle": "block/antenna_texture"
+		"0": "javaengineering:block/antenna_texture",
+		"1": "javaengineering:block/antenna_butt",
+		"particle": "javaengineering:block/antenna_texture"
 	},
 	"elements": [
 		{

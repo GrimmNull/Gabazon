@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": {
+      "model":"javaengineering:block/monitor_off"
+    }
+  },
+  "on": {
+    "model":"javaengineering:block/monitor_on"
+  },
+  "inventory": {
+    "model":"javaengineering:block/monitor_off"
+  }
+}

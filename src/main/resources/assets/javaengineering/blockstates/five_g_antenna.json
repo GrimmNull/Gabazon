@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": {
+      "model":"javaengineering:block/five_g_antenna"
+    }
+  },
+  "inventory": {
+    "model":"javaengineering:block/five_g_antenna"
+  }
+}

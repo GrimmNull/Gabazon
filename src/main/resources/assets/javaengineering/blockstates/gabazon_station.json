@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": {
+      "model":"javaengineering:block/gabazon_station_off"
+    }
+  },
+  "on": {
+    "model":"javaengineering:block/gabazon_station_on"
+  },
+  "inventory": {
+    "model":"javaengineering:block/gabazon_station_off"
+  }
+}

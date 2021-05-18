@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/pipe_case_text",
-		"1": "block/pipe_no_energy",
-		"2": "block/pipe_port",
-		"particle": "block/pipe_case_text"
+		"0": "javaengineering:block/pipe_case_text",
+		"1": "javaengineering:block/pipe_no_energy",
+		"2": "javaengineering:block/pipe_port",
+		"particle": "javaengineering:block/pipe_case_text"
 	},
 	"elements": [
 		{
