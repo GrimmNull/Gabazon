@@ -17,5 +17,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.THERMAL_GENERATOR.get());
+        simpleBlock(ModBlocks.FIVE_G_ANTENNA.get());
+        simpleBlock(ModBlocks.GABAZON_STATION.get());
+        simpleBlock(ModBlocks.MONITOR.get());
+        simpleBlock(ModBlocks.ENERGY_PIPE.get());
     }
 }

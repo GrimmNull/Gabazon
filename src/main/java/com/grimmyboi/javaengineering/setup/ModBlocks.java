@@ -19,6 +19,30 @@ public class ModBlocks {
                     .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.METAL)
             ));
+    public static final RegistryObject<Block> FIVE_G_ANTENNA=register("five_g_antenna", ()->
+            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .sound(SoundType.ANVIL)
+            ));
+    public static final RegistryObject<Block> MONITOR=register("monitor", ()->
+            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .harvestLevel(1)
+                    .harvestTool(ToolType.PICKAXE)
+                    .sound(SoundType.GLASS)
+            ));
+    public static final RegistryObject<Block> GABAZON_STATION=register("gabazon_station", ()->
+            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .sound(SoundType.METAL)
+            ));
+    public static final RegistryObject<Block> ENERGY_PIPE=register("energy_pipe", ()->
+            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .harvestLevel(2)
+                    .harvestTool(ToolType.PICKAXE)
+                    .sound(SoundType.ANVIL)
+            ));
 
     public static void register(){}
 
