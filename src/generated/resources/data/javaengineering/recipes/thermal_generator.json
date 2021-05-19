@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "redstone",
+  "pattern": [
+    "low",
+    "oro",
+    "iii"
+  ],
+  "key": {
+    "l": {
+      "item": "minecraft:lava_bucket"
+    },
+    "w": {
+      "item": "minecraft:water_bucket"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "javaengineering:thermal_generator"
+  }
+}

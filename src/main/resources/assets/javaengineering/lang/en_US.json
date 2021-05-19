@@ -1,4 +1,9 @@
 {
   "item.javaengineering.engineer_key": "Engineering key",
-  "block.javaengineering.thermal_generator": "Thermal generator"
+  "item.javaengineering.wallet": "Wallet",
+  "block.javaengineering.thermal_generator": "Thermal generator",
+  "block.javaengineering.five_g_antenna": "5G Antenna",
+  "block.javaengineering.monitor": "Display monitor",
+  "block.javaengineering.gabazon_station": "Gabazon Station",
+  "block.javaengineering.energy_pipe": "Energy Pipe"
 }
