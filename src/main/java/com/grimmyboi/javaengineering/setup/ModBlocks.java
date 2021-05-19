@@ -1,5 +1,9 @@
 package com.grimmyboi.javaengineering.setup;
 
+import com.grimmyboi.javaengineering.block.energypipe.EnergyPipeBlock;
+import com.grimmyboi.javaengineering.block.fivegantenna.FiveGAntennaBlock;
+import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationBlock;
+import com.grimmyboi.javaengineering.block.monitor.MonitorBlock;
 import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -17,22 +21,16 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> THERMAL_GENERATOR=register("thermal_generator",()->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
-                    .harvestLevel(2)
-                    .harvestTool(ToolType.PICKAXE)
-                    .sound(SoundType.METAL)
-                    .strength(3,10)
-                    .requiresCorrectToolForDrops()
-                    .isRedstoneConductor(new AbstractBlock.IPositionPredicate() {
-                        @Override
-                        public boolean test(BlockState p_test_1_, IBlockReader p_test_2_, BlockPos p_test_3_) {
-                            return false;
-                        }
-                    })
-            ));
+public static final RegistryObject<ThermalGeneratorBlock> THERMAL_GENERATOR=register("thermal_generator",
+        () -> new ThermalGeneratorBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                .harvestLevel(2)
+                .harvestTool(ToolType.PICKAXE)
+                .sound(SoundType.METAL)
+                .strength(3,10)
+                .requiresCorrectToolForDrops()
+        ));
     public static final RegistryObject<Block> FIVE_G_ANTENNA=register("five_g_antenna", ()->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+            new FiveGAntennaBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.ANVIL)
@@ -40,7 +38,7 @@ public class ModBlocks {
                     .strength(3,10)
             ));
     public static final RegistryObject<Block> MONITOR=register("monitor", ()->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+            new MonitorBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(1)
                     .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.GLASS)
@@ -48,39 +46,22 @@ public class ModBlocks {
                     .strength(3,10)
             ));
     public static final RegistryObject<Block> GABAZON_STATION=register("gabazon_station", ()->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+            new GabazonStationBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()
                     .strength(3,10)
-                    .isRedstoneConductor(new AbstractBlock.IPositionPredicate() {
-                        @Override
-                        public boolean test(BlockState p_test_1_, IBlockReader p_test_2_, BlockPos p_test_3_) {
-                            return false;
-                        }
-                    })
             ));
     public static final RegistryObject<Block> ENERGY_PIPE=register("energy_pipe", ()->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+            new EnergyPipeBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.ANVIL)
                     .requiresCorrectToolForDrops()
                     .strength(3,10)
-                    .isRedstoneConductor(new AbstractBlock.IPositionPredicate() {
-                        @Override
-                        public boolean test(BlockState p_test_1_, IBlockReader p_test_2_, BlockPos p_test_3_) {
-                            return false;
-                        }
-                    })
             ));
 
-    public static final RegistryObject<ThermalGeneratorBlock> THERMAL_GENERATOR_BLOCK=register("thermal_generator_block",
-            () -> new ThermalGeneratorBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
-                    .strength(4,20)
-                    .sound(SoundType.ANVIL)
-            ));
 
     public static void register(){}
 
