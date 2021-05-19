@@ -31,7 +31,7 @@ public class DataGenerators {
 
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new ModRecipeProvider(gen));
-        System.out.println("The path: " + gen.getOutputFolder().toString());
+
         gen.run();
     }
 }

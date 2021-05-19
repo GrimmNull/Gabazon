@@ -39,7 +39,7 @@ public class ModRecipeProvider extends RecipeProvider {
                             .unlockedBy("has_item",has(Items.IRON_INGOT)).group("redstone")
                             .save(consumer);
 
-        ShapedRecipeBuilder.shaped(ModBlocks.ENERGY_PIPE.get(),9)
+        ShapedRecipeBuilder.shaped(ModBlocks.ENERGY_PIPE.get(),3)
                             .define('i',Items.IRON_INGOT)
                             .define('r',Items.REDSTONE)
                             .pattern("iii")

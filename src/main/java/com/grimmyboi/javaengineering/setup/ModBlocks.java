@@ -1,5 +1,6 @@
 package com.grimmyboi.javaengineering.setup;
 
+import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -73,6 +74,12 @@ public class ModBlocks {
                             return false;
                         }
                     })
+            ));
+
+    public static final RegistryObject<ThermalGeneratorBlock> THERMAL_GENERATOR_BLOCK=register("thermal_generator_block",
+            () -> new ThermalGeneratorBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .strength(4,20)
+                    .sound(SoundType.ANVIL)
             ));
 
     public static void register(){}
