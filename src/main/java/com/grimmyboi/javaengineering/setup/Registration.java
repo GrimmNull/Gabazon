@@ -2,7 +2,6 @@ package com.grimmyboi.javaengineering.setup;
 
 import com.grimmyboi.javaengineering.Main;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -30,7 +29,7 @@ public class Registration {
         ModItems.register();
         ModContainerTypes.register();
         ModBlocks.register();
-        ModRecipeSerializers.register();
+        ModRecipes.register();
         ModTileEntityTypes.register();
     }
 }
