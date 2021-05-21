@@ -87,7 +87,7 @@ public class ThermalGeneratorBlock extends Block {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite());
     }
 
     @Override

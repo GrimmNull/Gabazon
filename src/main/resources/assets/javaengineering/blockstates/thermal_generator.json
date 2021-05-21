@@ -1,8 +1,5 @@
 {
   "variants": {
-    "": {
-      "model": "javaengineering:block/thermal_generator"
-    },
     "facing=down": {
       "model": "javaengineering:block/thermal_generator",
       "x": 90
