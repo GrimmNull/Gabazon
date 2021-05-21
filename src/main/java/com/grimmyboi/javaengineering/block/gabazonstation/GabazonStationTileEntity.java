@@ -1,5 +1,6 @@
 package com.grimmyboi.javaengineering.block.gabazonstation;
 
+import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorContainer;
 import com.grimmyboi.javaengineering.crafting.recipe.DeliveryRecipe;
 import com.grimmyboi.javaengineering.setup.ModRecipes;
 import com.grimmyboi.javaengineering.setup.ModTileEntityTypes;
@@ -158,9 +159,10 @@ public class GabazonStationTileEntity extends LockableTileEntity implements ISid
         return new TranslationTextComponent("container.javaengineering.gabazon_station");
     }
 
+
     @Override
-    protected Container createMenu(int id, PlayerInventory playerInventory) {
-        return new GabazonStaionContainer(id, playerInventory, this, this.fields);
+    protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
+        return null;
     }
 
     @Override

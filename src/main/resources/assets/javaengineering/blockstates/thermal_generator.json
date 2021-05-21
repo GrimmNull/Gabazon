@@ -1,10 +1,33 @@
 {
-	"variants": {
-		"": {
-		"model":"javaengineering:block/thermal_generator"
-	}
-	},
-	"inventory": {
-		"model":"javaengineering:block/thermal_generator"
-	}
+  "variants": {
+    "": {
+      "model": "javaengineering:block/thermal_generator"
+    },
+    "facing=down": {
+      "model": "javaengineering:block/thermal_generator",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "javaengineering:block/thermal_generator",
+      "x": -90
+    },
+    "facing=north": {
+      "model": "javaengineering:block/thermal_generator"
+    },
+    "facing=south": {
+      "model": "javaengineering:block/thermal_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "javaengineering:block/thermal_generator",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "javaengineering:block/thermal_generator",
+      "y": 90
+    }
+  },
+  "inventory": {
+    "model": "javaengineering:block/thermal_generator"
+  }
 }

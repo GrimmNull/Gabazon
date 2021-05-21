@@ -21,7 +21,7 @@ modId="javaengineering" #mandatory
 # see the associated build.gradle script for how to populate this completely automatically during a build
 version="1.0" #mandatory
  # A display name for the mod
-displayName="Java Engineering" #mandatory
+displayName="Gabazon Prime" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -34,9 +34,9 @@ credits="Special thanks to coffee and Monster" #optional
 authors="A programmer with long pink socks" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-This is my first attempt at a Minecraft Mod, so please have mercy!
+Ready to bring the capitalist depressing life in your favorite game?
 
-If you read this description it means that at least it loads in the game without breaking it, which is a win in my book...
+Boy, oh, boy, do I have a mod for you!
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.javaengineering]] #optional

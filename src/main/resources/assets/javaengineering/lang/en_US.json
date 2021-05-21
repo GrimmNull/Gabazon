@@ -5,5 +5,14 @@
   "block.javaengineering.five_g_antenna": "5G Antenna",
   "block.javaengineering.monitor": "Display monitor",
   "block.javaengineering.gabazon_station": "Gabazon Station",
-  "block.javaengineering.energy_pipe": "Energy Pipe"
+  "block.javaengineering.energy_pipe": "Energy Pipe",
+
+
+  "message.station": "Buy whatever your soul desires, right here and now",
+
+
+
+
+  "screen.javaengineering.generator": "Generator screen",
+  "screen.javaengineering.station": "Gabazon main station"
 }
