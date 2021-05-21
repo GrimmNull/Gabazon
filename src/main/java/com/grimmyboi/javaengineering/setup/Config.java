@@ -19,6 +19,13 @@ public class Config {
     public static ForgeConfigSpec.IntValue THERMALGENERATOR_SEND;
     public static ForgeConfigSpec.IntValue THERMALGENERATOR_TICKS;
 
+    public static ForgeConfigSpec.IntValue ENERGYPIPE_MAXPOWER;
+    public static ForgeConfigSpec.IntValue ENERGYPIPE_RECEIVE;
+    public static ForgeConfigSpec.IntValue ENERGYPIPE_SEND;
+
+    public static ForgeConfigSpec.IntValue GABAZONSTATION_MAXPOWER;
+    public static ForgeConfigSpec.IntValue GABAZONSTATION_RECEIVE;
+
     static {
 
         ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
@@ -49,6 +56,18 @@ public class Config {
                 .defineInRange("send", 100, 0, Integer.MAX_VALUE);
         THERMALGENERATOR_TICKS = SERVER_BUILDER.comment("Ticks per lava bucket")
                 .defineInRange("ticks", 20, 0, Integer.MAX_VALUE);
+
+        ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power for a pipe")
+                .defineInRange("maxPower", 100000, 0, Integer.MAX_VALUE);
+        ENERGYPIPE_RECEIVE = SERVER_BUILDER.comment("Power that is received")
+                .defineInRange("receive", 100, 0, Integer.MAX_VALUE);
+        ENERGYPIPE_SEND = SERVER_BUILDER.comment("Power generation to send per tick")
+                .defineInRange("send", 100, 0, Integer.MAX_VALUE);
+
+        ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the station")
+                .defineInRange("maxPower", 5000, 0, Integer.MAX_VALUE);
+        ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power that is accepted by the station")
+                .defineInRange("maxPower", 100, 0, Integer.MAX_VALUE);
 
         SERVER_BUILDER.pop();
     }

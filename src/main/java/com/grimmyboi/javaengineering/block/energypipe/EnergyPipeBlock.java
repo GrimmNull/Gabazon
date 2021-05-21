@@ -11,6 +11,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -44,25 +45,17 @@ public class EnergyPipeBlock extends Block {
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult raytrace) {
-        if(world.isClientSide){
+        if(world!=null && world.isClientSide){
             return ActionResultType.SUCCESS;
         }
-        this.interactWith(world,pos,player);
         return ActionResultType.CONSUME;
     }
 
-    private void interactWith(World world, BlockPos pos, PlayerEntity player){
-        TileEntity tileEntity=world.getBlockEntity(pos);
-        if(tileEntity instanceof EnergyPipeTileEntity && player instanceof ServerPlayerEntity){
-            EnergyPipeTileEntity tg = (EnergyPipeTileEntity) tileEntity;
-            NetworkHooks.openGui((ServerPlayerEntity) player,tg,tg::encodeExtraData);
-        }
-    }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite()).setValue(BlockStateProperties.POWERED,false);
     }
 
     @Override
@@ -88,8 +81,8 @@ public class EnergyPipeBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block,BlockState> builder){
-        builder.add(FACING);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.FACING, BlockStateProperties.POWERED);
     }
 }
 

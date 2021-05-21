@@ -1,10 +1,31 @@
 {
   "variants": {
-    "": {
-      "model":"javaengineering:block/five_g_antenna"
+    "facing=down": {
+      "model": "javaengineering:block/five_g_antenna",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "javaengineering:block/five_g_antenna",
+      "x": -90
+    },
+    "facing=north": {
+      "model": "javaengineering:block/five_g_antenna"
+    },
+    "facing=south": {
+      "model": "javaengineering:block/five_g_antenna",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "javaengineering:block/five_g_antenna",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "javaengineering:block/five_g_antenna",
+      "y": 90
     }
   },
   "inventory": {
-    "model":"javaengineering:block/five_g_antenna"
+    "model": "javaengineering:block/five_g_antenna"
   }
 }
+

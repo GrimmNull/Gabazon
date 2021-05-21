@@ -30,13 +30,14 @@ public class ThermalGeneratorTileEntity extends TileEntity implements ITickableT
     }
 
     private ItemStackHandler itemHandler = createHandler();
-    private CustomEnergyStorage energyStorage = createEnergy();
+    private CustomEnergyStorage energyStorage = createEnergy(Config.THERMALGENERATOR_MAXPOWER.get(),500);
+    private CustomEnergyStorage energyStorageOff = createEnergy(Config.THERMALGENERATOR_MAXPOWER.get(),0);
 
-    // Never create lazy optionals in getCapability. Always place them as fields in the tile entity:
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
     private LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
 
     private int counter;
+    private Boolean lastPoweredBlockState=false,active=true;
 
     @Override
     public void setRemoved() {
@@ -47,10 +48,20 @@ public class ThermalGeneratorTileEntity extends TileEntity implements ITickableT
 
     @Override
     public void tick() {
-        if (level.isClientSide) {
+        if (level!=null && level.isClientSide) {
             return;
         }
-
+        if(!active)
+        {
+            if(active!=lastPoweredBlockState){
+                lastPoweredBlockState=false;
+                energy=LazyOptional.of(() ->energyStorageOff);
+            }
+            return;
+        }else if(active!=lastPoweredBlockState){
+            energy=LazyOptional.of(() ->energyStorage);
+            lastPoweredBlockState=true;
+        }
         if (counter > 0) {
             counter--;
             if (counter <= 0) {
@@ -66,12 +77,6 @@ public class ThermalGeneratorTileEntity extends TileEntity implements ITickableT
                 counter = Config.THERMALGENERATOR_TICKS.get();
                 setChanged();
             }
-        }
-
-        BlockState blockState = level.getBlockState(worldPosition);
-        if (blockState.getValue(BlockStateProperties.POWERED) != counter > 0) {
-            level.setBlock(worldPosition, blockState.setValue(BlockStateProperties.POWERED, counter > 0),
-                    Constants.BlockFlags.NOTIFY_NEIGHBORS + Constants.BlockFlags.BLOCK_UPDATE);
         }
 
         sendOutPower();
@@ -147,13 +152,20 @@ public class ThermalGeneratorTileEntity extends TileEntity implements ITickableT
         };
     }
 
-    private CustomEnergyStorage createEnergy() {
-        return new CustomEnergyStorage(Config.THERMALGENERATOR_MAXPOWER.get(), 0) {
+    private CustomEnergyStorage createEnergy(int capacity, int transfer) {
+        return new CustomEnergyStorage(capacity, transfer) {
             @Override
             protected void onEnergyChanged() {
                 setChanged();
             }
         };
+    }
+
+    public void setActive(Boolean state){
+        this.active=state;
+    }
+    public Boolean getActive(){
+        return this.active;
     }
 
     @Nonnull

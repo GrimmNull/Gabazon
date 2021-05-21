@@ -1,8 +1,11 @@
 package com.grimmyboi.javaengineering.block.gabazonstation;
 
 
+import com.grimmyboi.javaengineering.block.energypipe.EnergyPipeTileEntity;
 import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorContainer;
+import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorTileEntity;
 import com.grimmyboi.javaengineering.setup.Config;
+import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -18,6 +21,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -60,68 +64,63 @@ public class GabazonStationBlock extends Block {
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult raytrace) {
-        if (world.isClientSide) {
-            return ActionResultType.SUCCESS;
-        }
-        this.interactWith(world, pos, player);
-        return ActionResultType.CONSUME;
-    }
+        if (!world.isClientSide) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            if (tileEntity instanceof GabazonStationTileEntity) {
+                if (player.getMainHandItem().sameItem(new ItemStack(ModItems.WALLET.get()))) {
+                    INamedContainerProvider containerProvider = new INamedContainerProvider() {
+                        @Override
+                        public ITextComponent getDisplayName() {
+                            return new TranslationTextComponent("screen.javaengineering.station");
+                        }
 
-    private void interactWith(World world, BlockPos pos, PlayerEntity player) {
-        TileEntity tileEntity = world.getBlockEntity(pos);
-        if (tileEntity instanceof GabazonStationTileEntity && player instanceof ServerPlayerEntity) {
-            //GabazonStationTileEntity tg = (GabazonStationTileEntity) tileEntity;
-            //NetworkHooks.openGui((ServerPlayerEntity) player,tg,tg::encodeExtraData);
-
-            INamedContainerProvider containerProvider = new INamedContainerProvider() {
-                @Override
-                public ITextComponent getDisplayName() {
-                    return new TranslationTextComponent("screen.mytutorial.firstblock");
+                        @Override
+                        public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+                            return new GabazonStationContainer(i, world, pos, playerInventory, playerEntity);
+                        }
+                    };
+                    NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
+                    return ActionResultType.CONSUME;
                 }
-
-                @Override
-                public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                    return new ThermalGeneratorContainer(i, world, pos, playerInventory, playerEntity);
-                }
-            };
-            NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
-        } else {
-            throw new IllegalStateException("Our named container provider is missing!");
+            } else {
+                throw new IllegalStateException("Our named container provider is missing!");
+            }
         }
+        return ActionResultType.SUCCESS;
     }
 
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite()).setValue(BlockStateProperties.POWERED,false);
     }
 
     @Override
     public void onRemove(BlockState oldState, World world, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!oldState.is(newState.getBlock())) {
-            TileEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof IInventory) {
-                InventoryHelper.dropContents(world, pos, (IInventory) tileEntity);
-                world.updateNeighbourForOutputSignal(pos, this);
+        if(!oldState.is(newState.getBlock())){
+            TileEntity tileEntity=world.getBlockEntity(pos);
+            if(tileEntity instanceof IInventory){
+                InventoryHelper.dropContents(world,pos,(IInventory) tileEntity);
+                world.updateNeighbourForOutputSignal(pos,this);
             }
-            super.onRemove(oldState, world, pos, newState, isMoving);
+            super.onRemove(oldState,world,pos,newState,isMoving);
         }
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    public BlockState rotate(BlockState state, Rotation rot){
+        return state.setValue(FACING,rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public BlockState mirror(BlockState state, Mirror mirrorIn){
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(BlockStateProperties.FACING, BlockStateProperties.POWERED);
     }
 }
 

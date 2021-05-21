@@ -1,6 +1,7 @@
 package com.grimmyboi.javaengineering.block.thermalgenerator;
 
 import com.grimmyboi.javaengineering.setup.Config;
+import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -63,6 +64,10 @@ public class ThermalGeneratorBlock extends Block {
         if (!world.isClientSide) {
             TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof ThermalGeneratorTileEntity) {
+                if(player.getMainHandItem().sameItem(new ItemStack(ModItems.ENGINEER_KEY.get()))){
+                    ((ThermalGeneratorTileEntity) tileEntity).setActive(!((ThermalGeneratorTileEntity) tileEntity).getActive());
+                    return ActionResultType.CONSUME;
+                }
                 INamedContainerProvider containerProvider = new INamedContainerProvider() {
                     @Override
                     public ITextComponent getDisplayName() {
@@ -114,6 +119,6 @@ public class ThermalGeneratorBlock extends Block {
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.FACING, BlockStateProperties.POWERED);
+        builder.add(BlockStateProperties.FACING);
     }
 }

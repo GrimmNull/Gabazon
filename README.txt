@@ -1,6 +1,6 @@
 Hey, kiddo! Have you ever lacked precious resources?
 Were you ever just a netherite ingot away from that long awaited armor?
-Maybe you were hungry and too bussy to cook your own food...
+Maybe you were hungry and too busy to cook your own food...
 
 Well, I have the perfect solution just for you! 
 

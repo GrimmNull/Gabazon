@@ -28,7 +28,7 @@ public class GabazonStationContainer extends Container {
     private IItemHandler playerInventory;
 
     public GabazonStationContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        super(ModContainerTypes.THERMAL_GENERATOR_CONTAINER.get(), windowId);
+        super(ModContainerTypes.GABAZON_STATION_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
@@ -80,9 +80,14 @@ public class GabazonStationContainer extends Container {
         return tileEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
     }
 
+    public int getMoney(){
+        GabazonStationTileEntity tile= (GabazonStationTileEntity) tileEntity;
+        return tile.getMoney();
+    }
+
     @Override
     public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, ModBlocks.THERMAL_GENERATOR.get());
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, ModBlocks.GABAZON_STATION.get());
     }
 
     @Override
