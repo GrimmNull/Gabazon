@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -19,6 +20,9 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.StringNBT;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -81,6 +85,15 @@ public class GabazonStationBlock extends Block {
                     };
                     NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
                     return ActionResultType.CONSUME;
+                } else if(player.getMainHandItem().sameItem(new ItemStack(ModItems.ENGINEER_KEY.get()))){
+                    ItemStack tomeStack = new ItemStack(Items.WRITTEN_BOOK);
+                    ListNBT bookPages = new ListNBT();
+                    bookPages.add(StringNBT.valueOf("\\nTap the monitor with your wallet to get the list of products"));
+                    bookPages.add(StringNBT.valueOf("\\nTo buy you have to write a book with the following format:\nbuy: \nQUANTITY1xITEM1\nQUANTITY2xITEM2\n..."));
+                    tomeStack.addTagElement("pages", bookPages);
+                    tomeStack.addTagElement("author", StringNBT.valueOf("GabazonStation"));
+                    tomeStack.addTagElement("title", StringNBT.valueOf("Informations"));
+                    world.addFreshEntity(new ItemEntity(world,pos.getX(),pos.getY(),pos.getZ()+1 ,tomeStack));
                 }
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");

@@ -27,6 +27,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -46,7 +47,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GabazonStationTileEntity extends TileEntity implements ITickableTileEntity {
 
     private ItemStackHandler itemHandler = createHandler();
-    private CustomEnergyStorage energyStorage = createEnergy(Config.THERMALGENERATOR_MAXPOWER.get(),500);
+    private CustomEnergyStorage energyStorage = createEnergy(Config.GABAZONSTATION_MAXPOWER.get(),100);
 
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
     private LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
@@ -111,6 +112,7 @@ public class GabazonStationTileEntity extends TileEntity implements ITickableTil
 
         BlockState blockState = level.getBlockState(worldPosition);
         if (blockState.getValue(BlockStateProperties.POWERED) != counter > 0) {
+            System.out.println("I'll update the powered state");
             level.setBlock(worldPosition, blockState.setValue(BlockStateProperties.POWERED, counter > 0),
                     Constants.BlockFlags.NOTIFY_NEIGHBORS + Constants.BlockFlags.BLOCK_UPDATE);
         }

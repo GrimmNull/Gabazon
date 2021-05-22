@@ -26,6 +26,9 @@ public class Config {
     public static ForgeConfigSpec.IntValue GABAZONSTATION_MAXPOWER;
     public static ForgeConfigSpec.IntValue GABAZONSTATION_RECEIVE;
 
+    public static ForgeConfigSpec.IntValue MONITOR_MAXPOWER;
+    public static ForgeConfigSpec.IntValue MONITOR_RECEIVE;
+
     static {
 
         ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
@@ -64,10 +67,15 @@ public class Config {
         ENERGYPIPE_SEND = SERVER_BUILDER.comment("Power generation to send per tick")
                 .defineInRange("send", 100, 0, Integer.MAX_VALUE);
 
-        ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the station")
+        GABAZONSTATION_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the station")
                 .defineInRange("maxPower", 5000, 0, Integer.MAX_VALUE);
-        ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power that is accepted by the station")
+        GABAZONSTATION_RECEIVE = SERVER_BUILDER.comment("Maximum power that is accepted by the station")
                 .defineInRange("maxPower", 100, 0, Integer.MAX_VALUE);
+
+        MONITOR_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the monitor")
+                .defineInRange("maxPower", 500, 0, Integer.MAX_VALUE);
+        MONITOR_RECEIVE = SERVER_BUILDER.comment("Maximum power that is accepted by the station")
+                .defineInRange("maxPower", 50, 0, Integer.MAX_VALUE);
 
         SERVER_BUILDER.pop();
     }

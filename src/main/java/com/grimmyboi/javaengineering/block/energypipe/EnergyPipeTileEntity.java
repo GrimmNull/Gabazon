@@ -155,7 +155,7 @@ public class EnergyPipeTileEntity extends TileEntity implements ITickableTileEnt
     }
 
     private CustomEnergyStorage createEnergy() {
-        return new CustomEnergyStorage(Config.THERMALGENERATOR_MAXPOWER.get(), 0) {
+        return new CustomEnergyStorage(Config.THERMALGENERATOR_MAXPOWER.get(), 100) {
             @Override
             protected void onEnergyChanged() {
                 setChanged();
