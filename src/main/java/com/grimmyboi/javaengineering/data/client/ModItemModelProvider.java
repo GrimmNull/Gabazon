@@ -24,6 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         itemBuilder(itemGenerated, "engineer_key");
         itemBuilder(itemGenerated, "wallet");
+        itemBuilder(itemGenerated,"ampermeter");
     }
 
     private ItemModelBuilder blockBuilder(String name) {

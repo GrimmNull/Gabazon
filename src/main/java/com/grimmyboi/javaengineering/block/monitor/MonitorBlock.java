@@ -3,6 +3,7 @@ package com.grimmyboi.javaengineering.block.monitor;
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
 import com.grimmyboi.javaengineering.block.fivegantenna.FiveGAntennaTileEntity;
+import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
 import com.grimmyboi.javaengineering.setup.GabazonClient;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.BlockState;
@@ -84,6 +85,9 @@ public class MonitorBlock extends AbstracModtBlock {
                     tomeStack.addTagElement("author", StringNBT.valueOf("GabazonStation"));
                     tomeStack.addTagElement("title", StringNBT.valueOf("Informations"));
                     world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ() + 1, tomeStack));
+                    return ActionResultType.CONSUME;
+                } else if(player.getMainHandItem().sameItem(new ItemStack(ModItems.AMPERMETER.get()))){
+                    player.sendMessage(new TranslationTextComponent("ampermeter.voltage").append(String.valueOf(((MonitorTileEntity) tileEntity).energyStorage.getEnergyStored())), UUID.randomUUID());
                     return ActionResultType.CONSUME;
                 }
                 INamedContainerProvider containerProvider = new INamedContainerProvider() {

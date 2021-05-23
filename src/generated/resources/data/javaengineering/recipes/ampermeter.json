@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "group": "redstone",
   "pattern": [
-    "iii",
-    "rrr",
-    "iii"
+    "iri",
+    "igi",
+    " i "
   ],
   "key": {
     "i": {
@@ -12,10 +12,12 @@
     },
     "r": {
       "item": "minecraft:redstone"
+    },
+    "g": {
+      "item": "minecraft:glass"
     }
   },
   "result": {
-    "item": "javaengineering:energy_pipe",
-    "count": 3
+    "item": "javaengineering:ampermeter"
   }
 }

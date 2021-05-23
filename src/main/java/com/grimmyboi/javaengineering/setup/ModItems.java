@@ -9,6 +9,8 @@ public class ModItems {
             new Item(new Item.Properties().tab(ItemGroup.TAB_REDSTONE).stacksTo(1)));
     public static final RegistryObject<Item> WALLET = Registration.ITEMS.register("wallet", () ->
             new Item(new Item.Properties().tab(ItemGroup.TAB_REDSTONE).stacksTo(1)));
+    public static final RegistryObject<Item> AMPERMETER = Registration.ITEMS.register("ampermeter", () ->
+            new Item(new Item.Properties().tab(ItemGroup.TAB_REDSTONE).stacksTo(1)));
 
     static void register() {
 

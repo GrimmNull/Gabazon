@@ -81,7 +81,12 @@ public class GabazonStationBlock extends AbstracModtBlock {
                     tomeStack.addTagElement("author", StringNBT.valueOf("GabazonStation"));
                     tomeStack.addTagElement("title", StringNBT.valueOf("Informations"));
                     world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ() + 1, tomeStack));
+                    return ActionResultType.CONSUME;
+                }else if(player.getMainHandItem().sameItem(new ItemStack(ModItems.AMPERMETER.get()))){
+                    player.sendMessage(new TranslationTextComponent("ampermeter.voltage").append(String.valueOf(((GabazonStationTileEntity) tileEntity).energyStorage.getEnergyStored())), UUID.randomUUID());
+                    return ActionResultType.CONSUME;
                 }
+                player.sendMessage(new TranslationTextComponent("station.balance").append(((GabazonStationTileEntity) tileEntity).getMoney().toString()), UUID.randomUUID());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }

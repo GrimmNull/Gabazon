@@ -1,6 +1,7 @@
 package com.grimmyboi.javaengineering.block.thermalgenerator;
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
+import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
 import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.Block;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 @SuppressWarnings("ALL")
 public class ThermalGeneratorBlock extends AbstracModtBlock {
@@ -55,6 +57,9 @@ public class ThermalGeneratorBlock extends AbstracModtBlock {
             if (tileEntity instanceof ThermalGeneratorTileEntity) {
                 if (player.getMainHandItem().sameItem(new ItemStack(ModItems.ENGINEER_KEY.get()))) {
                     ((ThermalGeneratorTileEntity) tileEntity).setActive(!((ThermalGeneratorTileEntity) tileEntity).getActive());
+                    return ActionResultType.CONSUME;
+                } else if(player.getMainHandItem().sameItem(new ItemStack(ModItems.AMPERMETER.get()))){
+                    player.sendMessage(new TranslationTextComponent("ampermeter.voltage").append(String.valueOf(((ThermalGeneratorTileEntity) tileEntity).energyStorage.getEnergyStored())), UUID.randomUUID());
                     return ActionResultType.CONSUME;
                 }
                 INamedContainerProvider containerProvider = new INamedContainerProvider() {

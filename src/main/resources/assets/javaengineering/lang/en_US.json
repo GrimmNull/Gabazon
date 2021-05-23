@@ -1,6 +1,7 @@
 {
   "item.javaengineering.engineer_key": "Engineering key",
   "item.javaengineering.wallet": "Wallet",
+  "item.javaengineering.ampermeter": "Ampermeter",
   "block.javaengineering.thermal_generator": "Thermal generator",
   "block.javaengineering.five_g_antenna": "5G Antenna",
   "block.javaengineering.monitor": "Display monitor",
@@ -11,10 +12,15 @@
   "message.station": "Buy whatever your soul desires, right here and now",
   "message.generator": "The heart of the system, use it to keep it powered up",
 
+  "ampermeter.voltage": "This block still has this much energy: ",
+
+
   "station.notpowered": "The station doesn't have any power",
   "monitor.notpowered": "The monitor doesn't have any power",
 
   "antenna.notnear": "There is no antenna to get signal",
+
+  "station.balance": "Your balance is ",
 
   "screen.javaengineering.generator": "Generator screen",
   "screen.javaengineering.station": "Gabazon main station"

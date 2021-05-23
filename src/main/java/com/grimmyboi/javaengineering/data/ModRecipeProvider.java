@@ -79,5 +79,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(ModBlocks.THERMAL_GENERATOR.get())).group("redstone")
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(ModItems.AMPERMETER.get())
+                .define('i', Items.IRON_INGOT)
+                .define('r', Items.REDSTONE)
+                .define('g', Items.GLASS)
+                .pattern("iri")
+                .pattern("igi")
+                .pattern(" i ")
+                .unlockedBy("has_item",has(ModItems.AMPERMETER.get()))
+                .group("redstone")
+                .save(consumer);
     }
 }

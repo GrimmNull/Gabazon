@@ -58,7 +58,7 @@ public class GabazonStationTileEntity extends AbstractModEntityTile {
         return Main.doesItHaveValue(stack.getItem());
     }
 
-    public int getMoney() {
+    public Integer getMoney() {
         return this.money;
     }
 
