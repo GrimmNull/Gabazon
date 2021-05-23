@@ -11,7 +11,10 @@
   "message.station": "Buy whatever your soul desires, right here and now",
   "message.generator": "The heart of the system, use it to keep it powered up",
 
+  "station.notpowered": "The station doesn't have any power",
+  "monitor.notpowered": "The monitor doesn't have any power",
 
+  "antenna.notnear": "There is no antenna to get signal",
 
   "screen.javaengineering.generator": "Generator screen",
   "screen.javaengineering.station": "Gabazon main station"

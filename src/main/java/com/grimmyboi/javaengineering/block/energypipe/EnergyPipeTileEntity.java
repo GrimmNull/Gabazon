@@ -38,28 +38,7 @@ public class EnergyPipeTileEntity extends AbstractModEntityTile {
             }
 
             if (counter <= 0) {
-                AtomicInteger capacity = new AtomicInteger(energyStorage.getEnergyStored());
-                for (Direction direction : Direction.values()) {
-                    TileEntity te = level.getBlockEntity(worldPosition.relative(direction));
-                    if (te != null) {
-                        boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
-                                    if (handler.getEnergyStored() > 0) {
-                                        int received = handler.extractEnergy(Math.min(handler.getEnergyStored(), Config.ENERGYPIPE_RECEIVE.get()), false);
-                                        capacity.addAndGet(received);
-                                        energyStorage.addEnergy(received);
-                                        counter = 50;
-                                        setChanged();
-                                        return capacity.get() > 0;
-                                    } else {
-                                        return true;
-                                    }
-                                }
-                        ).orElse(true);
-                        if (!doContinue) {
-                            return;
-                        }
-                    }
-                }
+                    energyFlow(Config.ENERGYPIPE_RECEIVE.get(),50);
             }
         }
         updateBlockState();

@@ -29,6 +29,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 @SuppressWarnings("ALL")
 public class GabazonStationBlock extends AbstracModtBlock {
@@ -53,6 +54,10 @@ public class GabazonStationBlock extends AbstracModtBlock {
         if (!world.isClientSide) {
             TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof GabazonStationTileEntity) {
+                if(((GabazonStationTileEntity) tileEntity).energyStorage.getEnergyStored()<=0){
+                    player.sendMessage(new TranslationTextComponent("station.notpowered"), UUID.randomUUID());
+                    return ActionResultType.CONSUME;
+                }
                 if (player.getMainHandItem().sameItem(new ItemStack(ModItems.WALLET.get()))) {
                     INamedContainerProvider containerProvider = new INamedContainerProvider() {
                         @Override

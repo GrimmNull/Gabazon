@@ -56,7 +56,7 @@ public class Config {
         THERMALGENERATOR_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the Thermal generator")
                 .defineInRange("maxPower", 100000, 0, Integer.MAX_VALUE);
         THERMALGENERATOR_GENERATE = SERVER_BUILDER.comment("Power generation per lava bucket")
-                .defineInRange("generate", 10000, 0, Integer.MAX_VALUE);
+                .defineInRange("generate", 30000, 0, Integer.MAX_VALUE);
         THERMALGENERATOR_SEND = SERVER_BUILDER.comment("Power generation to send per tick")
                 .defineInRange("send", 100, 0, Integer.MAX_VALUE);
         THERMALGENERATOR_TICKS = SERVER_BUILDER.comment("Ticks per lava bucket")
@@ -65,16 +65,16 @@ public class Config {
         ENERGYPIPE_MAXPOWER = SERVER_BUILDER.comment("Maximum power for a pipe")
                 .defineInRange("maxPower", 1000, 0, Integer.MAX_VALUE);
         ENERGYPIPE_RECEIVE = SERVER_BUILDER.comment("Power that is received")
-                .defineInRange("receive", 250, 0, Integer.MAX_VALUE);
+                .defineInRange("receive", 350, 0, Integer.MAX_VALUE);
         ENERGYPIPE_SEND = SERVER_BUILDER.comment("Power generation to send per tick")
                 .defineInRange("send", 100, 0, Integer.MAX_VALUE);
 
         GABAZONSTATION_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the station")
                 .defineInRange("maxPower", 5000, 0, Integer.MAX_VALUE);
         GABAZONSTATION_RECEIVE = SERVER_BUILDER.comment("Maximum power that is accepted by the station")
-                .defineInRange("receive", 100, 0, Integer.MAX_VALUE);
+                .defineInRange("receive", 150, 0, Integer.MAX_VALUE);
         GABAZONSTATION_CONSUME_PER_TICK = SERVER_BUILDER.comment("The amount of energy used by the station per tick")
-                .defineInRange("consume", 5, 0, Integer.MAX_VALUE);
+                .defineInRange("consume", 2, 0, Integer.MAX_VALUE);
 
         MONITOR_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the monitor")
                 .defineInRange("maxPower", 500, 0, Integer.MAX_VALUE);

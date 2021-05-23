@@ -2,6 +2,7 @@ package com.grimmyboi.javaengineering.block.monitor;
 
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
+import com.grimmyboi.javaengineering.block.fivegantenna.FiveGAntennaTileEntity;
 import com.grimmyboi.javaengineering.setup.GabazonClient;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.BlockState;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.UUID;
 
 @SuppressWarnings("ALL")
 public class MonitorBlock extends AbstracModtBlock {
@@ -45,6 +47,17 @@ public class MonitorBlock extends AbstracModtBlock {
         if (!world.isClientSide) {
             TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof MonitorTileEntity) {
+                if (((MonitorTileEntity) tileEntity).energyStorage.getEnergyStored() <= 0) {
+                    player.sendMessage(new TranslationTextComponent("monitor.notpowered"), UUID.randomUUID());
+                    return ActionResultType.CONSUME;
+                }
+                if(!(world.getBlockEntity(pos.east(2)) instanceof FiveGAntennaTileEntity) &&
+                        !(world.getBlockEntity(pos.south(2)) instanceof FiveGAntennaTileEntity) &&
+                        !(world.getBlockEntity(pos.north(2)) instanceof FiveGAntennaTileEntity) &&
+                        !(world.getBlockEntity(pos.west(2)) instanceof FiveGAntennaTileEntity)){
+                    player.sendMessage(new TranslationTextComponent("antenna.notnear"), UUID.randomUUID());
+                    return ActionResultType.CONSUME;
+                }
                 if (player.getMainHandItem().sameItem(new ItemStack(ModItems.WALLET.get()))) {
                     String[] products;
                     try {

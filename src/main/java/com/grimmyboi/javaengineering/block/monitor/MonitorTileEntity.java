@@ -38,7 +38,23 @@ public class MonitorTileEntity extends AbstractModEntityTile {
         if (level != null && level.isClientSide) {
             return;
         }
+        processItem();
+        if(energyStorage.getEnergyStored()< energyStorage.getMaxEnergyStored()) {
+            if (counter > 0) {
+                counter--;
+                if (counter <= 0) {
+                }
+                setChanged();
+            }
+            if (counter <= 0) {
+                    energyFlow(Config.MONITOR_RECEIVE.get(),40);
+            }
+        }
+        updateBlockState();
+        energyStorage.consumeEnergy(Config.MONITOR_CONSUME_PER_TICK.get());
+    }
 
+    private void processItem(){
         ItemStack stack = itemHandler.getStackInSlot(0);
         if (stack.getItem() == Items.WRITTEN_BOOK) {
             CompoundNBT nbt = stack.getItem().getShareTag(stack);
@@ -82,41 +98,6 @@ public class MonitorTileEntity extends AbstractModEntityTile {
             }
             itemHandler.extractItem(0, 1, false);
         }
-        if(energyStorage.getEnergyStored()< energyStorage.getMaxEnergyStored()) {
-            if (counter > 0) {
-                counter--;
-                if (counter <= 0) {
-                    energyStorage.addEnergy(Config.MONITOR_RECEIVE.get());
-                }
-                setChanged();
-            }
-            if (counter <= 0) {
-                AtomicInteger capacity = new AtomicInteger(energyStorage.getEnergyStored());
-                for (Direction direction : Direction.values()) {
-                    TileEntity te = level.getBlockEntity(worldPosition.relative(direction));
-                    if (te != null) {
-                        boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
-                                    if (handler.getEnergyStored() > 0) {
-                                        int received = handler.extractEnergy(Math.min(handler.getEnergyStored(), Config.MONITOR_RECEIVE.get()), false);
-                                        capacity.addAndGet(received);
-                                        counter = 50;
-                                        energyStorage.addEnergy(received);
-                                        setChanged();
-                                        return capacity.get() > 0;
-                                    } else {
-                                        return true;
-                                    }
-                                }
-                        ).orElse(true);
-                        if (!doContinue) {
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        updateBlockState();
-        energyStorage.consumeEnergy(Config.MONITOR_CONSUME_PER_TICK.get());
     }
 
     private void sendBookMessage(ItemStack stack, String errorMessage, String errorTitle, Boolean simulatedPop) {

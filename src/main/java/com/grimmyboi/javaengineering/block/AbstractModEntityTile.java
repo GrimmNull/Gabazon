@@ -22,6 +22,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class AbstractModEntityTile extends TileEntity implements ITickableTileEntity {
     public ItemStackHandler itemHandler = createHandler();
@@ -35,6 +36,31 @@ public abstract class AbstractModEntityTile extends TileEntity implements ITicka
 
     public AbstractModEntityTile(TileEntityType block) {
         super(block);
+    }
+
+    protected void energyFlow(Integer valueForMin,Integer ticks){
+        AtomicInteger capacity = new AtomicInteger(energyStorage.getEnergyStored());
+        for (Direction direction : Direction.values()) {
+            TileEntity te = level.getBlockEntity(worldPosition.relative(direction));
+            if (te != null) {
+                boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
+                            if (handler.getEnergyStored() > 0) {
+                                int received = handler.extractEnergy(Math.min(handler.getEnergyStored(), valueForMin), false);
+                                capacity.addAndGet(received);
+                                counter = ticks;
+                                energyStorage.addEnergy(received);
+                                setChanged();
+                                return capacity.get() > 0;
+                            } else {
+                                return true;
+                            }
+                        }
+                ).orElse(true);
+                if (!doContinue) {
+                    return;
+                }
+            }
+        }
     }
 
     protected void updateBlockState(){
