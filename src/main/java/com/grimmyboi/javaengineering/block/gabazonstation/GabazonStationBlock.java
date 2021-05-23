@@ -40,7 +40,7 @@ public class GabazonStationBlock extends AbstracModtBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
-        list.add(new TranslationTextComponent("message.station", Integer.toString(Config.GABAZONSTATION_RECEIVE.get())));
+        list.add(new TranslationTextComponent("message.station"));
     }
 
     @Nullable

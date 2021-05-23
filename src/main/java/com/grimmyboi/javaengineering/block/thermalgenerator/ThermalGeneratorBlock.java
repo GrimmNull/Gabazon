@@ -39,7 +39,7 @@ public class ThermalGeneratorBlock extends AbstracModtBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
-        list.add(new TranslationTextComponent("message.generator", Integer.toString(Config.THERMALGENERATOR_GENERATE.get())));
+        list.add(new TranslationTextComponent("message.generator"));
     }
 
 

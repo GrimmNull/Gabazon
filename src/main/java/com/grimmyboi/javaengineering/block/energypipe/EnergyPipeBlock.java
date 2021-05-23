@@ -4,10 +4,12 @@ package com.grimmyboi.javaengineering.block.energypipe;
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
 import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
 import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorTileEntity;
+import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -23,11 +25,13 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.UUID;
 
 @SuppressWarnings("ALL")
@@ -40,6 +44,11 @@ public class EnergyPipeBlock extends AbstracModtBlock {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new EnergyPipeTileEntity();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
+        list.add(new TranslationTextComponent("message.pipe"));
     }
 
     @Override

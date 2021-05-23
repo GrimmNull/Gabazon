@@ -11,6 +11,9 @@
 
   "message.station": "Buy whatever your soul desires, right here and now",
   "message.generator": "The heart of the system, use it to keep it powered up",
+  "message.pipe": "A pipe that is used to transfer energy to somewhere else",
+  "message.monitor": "A touchscreen display where you can place your orders",
+  "message.antenna": "An antenna used to connect to the main server",
 
   "ampermeter.voltage": "This block still has this much energy: ",
 

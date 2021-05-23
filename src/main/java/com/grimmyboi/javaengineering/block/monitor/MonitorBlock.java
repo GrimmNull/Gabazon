@@ -4,9 +4,11 @@ package com.grimmyboi.javaengineering.block.monitor;
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
 import com.grimmyboi.javaengineering.block.fivegantenna.FiveGAntennaTileEntity;
 import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
+import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.GabazonClient;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -30,6 +32,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @SuppressWarnings("ALL")
@@ -42,6 +45,11 @@ public class MonitorBlock extends AbstracModtBlock {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new MonitorTileEntity();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
+        list.add(new TranslationTextComponent("message.monitor"));
     }
 
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult raytrace) {
