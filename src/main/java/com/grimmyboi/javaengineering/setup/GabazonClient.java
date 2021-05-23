@@ -6,10 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class GabazonClient {
-    public static String sendCommandToServer(String request,Integer money) throws IOException {
+    public static String sendCommandToServer(String request, Integer money) throws IOException {
         String serverAddress = "127.0.0.1";
         String response;
         int PORT = 8100;
@@ -21,7 +20,7 @@ public class GabazonClient {
             out.println(money);
             response = in.readLine();
         } catch (UnknownHostException e) {
-            response="No server listening... " + e;
+            response = "No server listening... " + e;
         }
         return response;
     }

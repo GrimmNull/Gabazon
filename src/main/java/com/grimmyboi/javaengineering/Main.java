@@ -13,12 +13,12 @@ import java.util.List;
 
 @Mod(Main.MOD_ID)
 public class Main {
-    public static final String MOD_ID="javaengineering";
-    private static List<Item> itemsWithValue=new ArrayList<>();
-    private static List<Integer> pricesOfItems=new ArrayList<>();
+    public static final String MOD_ID = "javaengineering";
+    private static List<Item> itemsWithValue = new ArrayList<>();
+    private static List<Integer> pricesOfItems = new ArrayList<>();
 
 
-    public void addItemsToList(){
+    public void addItemsToList() {
         itemsWithValue.add(Items.DIAMOND);
         pricesOfItems.add(200);
         itemsWithValue.add(Items.COAL);
@@ -37,13 +37,24 @@ public class Main {
         pricesOfItems.add(100);
         itemsWithValue.add(Items.NETHERITE_INGOT);
         pricesOfItems.add(300);
+        itemsWithValue.add(Items.BONE);
+        pricesOfItems.add(5);
+        itemsWithValue.add(Items.ROTTEN_FLESH);
+        pricesOfItems.add(5);
+        itemsWithValue.add(Items.GUNPOWDER);
+        pricesOfItems.add(7);
+        itemsWithValue.add(Items.ARROW);
+        pricesOfItems.add(2);
+        itemsWithValue.add(Items.REDSTONE);
+        pricesOfItems.add(40);
+
     }
 
-    public static Boolean doesItHaveValue(Item itemToTest){
+    public static Boolean doesItHaveValue(Item itemToTest) {
         return itemsWithValue.contains(itemToTest);
     }
 
-    public static int getItemPrice(Item itemToSell){
+    public static int getItemPrice(Item itemToSell) {
         return pricesOfItems.get(itemsWithValue.indexOf(itemToSell));
     }
 

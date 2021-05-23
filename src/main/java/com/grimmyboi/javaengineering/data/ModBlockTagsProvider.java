@@ -13,8 +13,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(DataGenerator p_i48256_1_, ExistingFileHelper existingFileHelper) {
         super(p_i48256_1_, Main.MOD_ID, existingFileHelper);
     }
+
     @Override
-    protected void addTags(){
+    protected void addTags() {
         tag(ModTags.Blocks.REDSTONE_ANTENNA).add(ModBlocks.FIVE_G_ANTENNA.get());
         tag(ModTags.Blocks.REDSTONE_GENERATOR).add(ModBlocks.THERMAL_GENERATOR.get());
         tag(ModTags.Blocks.REDSTONE_MONITOR).add(ModBlocks.MONITOR.get());

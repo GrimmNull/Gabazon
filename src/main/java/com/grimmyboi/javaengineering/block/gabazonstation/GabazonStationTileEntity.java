@@ -1,64 +1,44 @@
 package com.grimmyboi.javaengineering.block.gabazonstation;
 
 import com.grimmyboi.javaengineering.Main;
+import com.grimmyboi.javaengineering.block.AbstractModEntityTile;
 import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModTileEntityTypes;
-import com.grimmyboi.javaengineering.tools.CustomEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class GabazonStationTileEntity extends TileEntity implements ITickableTileEntity {
-
-    private ItemStackHandler itemHandler = createHandler();
-    private CustomEnergyStorage energyStorage = createEnergy(Config.GABAZONSTATION_MAXPOWER.get(),100);
-
-    private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-    private LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
-
-    private int counter;
-    private int money=0;
+public class GabazonStationTileEntity extends AbstractModEntityTile {
+    private int money = 0;
 
     public GabazonStationTileEntity() {
         super(ModTileEntityTypes.GABAZON_STATION.get());
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        handler.invalidate();
-        energy.invalidate();
+        energyStorage = createEnergy(Config.GABAZONSTATION_MAXPOWER.get(), 100);
+        energy = LazyOptional.of(() -> energyStorage);
     }
 
     @Override
     public void tick() {
-        if (level!=null && level.isClientSide) {
+        if (level != null && level.isClientSide) {
             return;
         }
 
         ItemStack stack = itemHandler.getStackInSlot(0);
         if (Main.doesItHaveValue(stack.getItem())) {
-            money+=Main.getItemPrice(stack.getItem());
+            money += Main.getItemPrice(stack.getItem());
             itemHandler.extractItem(0, 1, false);
             System.out.println("Money: " + money);
         }
-
+        if(energyStorage.getEnergyStored()< energyStorage.getMaxEnergyStored()) {
         if (counter > 0) {
             counter--;
             if (counter <= 0) {
@@ -72,10 +52,11 @@ public class GabazonStationTileEntity extends TileEntity implements ITickableTil
                 TileEntity te = level.getBlockEntity(worldPosition.relative(direction));
                 if (te != null) {
                     boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
-                                if (handler.getEnergyStored()>0) {
+                                if (handler.getEnergyStored() > 0) {
                                     int received = handler.extractEnergy(Math.min(handler.getEnergyStored(), Config.GABAZONSTATION_RECEIVE.get()), false);
                                     capacity.addAndGet(received);
-                                    counter=received/50;
+                                    energyStorage.addEnergy(received);
+                                    counter = 50;
                                     setChanged();
                                     return capacity.get() > 0;
                                 } else {
@@ -89,82 +70,18 @@ public class GabazonStationTileEntity extends TileEntity implements ITickableTil
                 }
             }
         }
-
-        BlockState blockState = level.getBlockState(worldPosition);
-        if (blockState.getValue(BlockStateProperties.POWERED) != counter > 0) {
-            System.out.println("I'll update the powered state");
-            level.setBlock(worldPosition, blockState.setValue(BlockStateProperties.POWERED, counter > 0),
-                    Constants.BlockFlags.NOTIFY_NEIGHBORS + Constants.BlockFlags.BLOCK_UPDATE);
-        }
-
     }
-
-
-
-    @Override
-    public void load(BlockState state, CompoundNBT tag) {
-        itemHandler.deserializeNBT(tag.getCompound("inv"));
-        energyStorage.deserializeNBT(tag.getCompound("energy"));
-
-        counter = tag.getInt("counter");
-        super.load(state, tag);
+        updateBlockState();
+        energyStorage.consumeEnergy(Config.MONITOR_CONSUME_PER_TICK.get());
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT tag) {
-        tag.put("inv", itemHandler.serializeNBT());
-        tag.put("energy", energyStorage.serializeNBT());
-
-        tag.putInt("counter", counter);
-        return super.save(tag);
+    protected Boolean conditionToCheck(ItemStack stack) {
+        return Main.doesItHaveValue(stack.getItem());
     }
 
-    private ItemStackHandler createHandler() {
-        return new ItemStackHandler(1) {
-
-            @Override
-            protected void onContentsChanged(int slot) {
-                setChanged();
-            }
-
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return Main.doesItHaveValue(stack.getItem());
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (!Main.doesItHaveValue(stack.getItem())) {
-                    return stack;
-                }
-                return super.insertItem(slot, stack, simulate);
-            }
-        };
-    }
-
-    private CustomEnergyStorage createEnergy(int capacity, int transfer) {
-        return new CustomEnergyStorage(capacity, transfer) {
-            @Override
-            protected void onEnergyChanged() {
-                setChanged();
-            }
-        };
-    }
-
-    public int getMoney(){
+    public int getMoney() {
         return this.money;
     }
 
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return handler.cast();
-        }
-        if (cap == CapabilityEnergy.ENERGY) {
-            return energy.cast();
-        }
-        return super.getCapability(cap, side);
-    }
 }

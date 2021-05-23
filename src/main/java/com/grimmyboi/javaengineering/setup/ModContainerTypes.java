@@ -28,5 +28,6 @@ public class ModContainerTypes {
         return new MonitorContainer(windowId, world, pos, inv, inv.player);
     }));
 
-    static void register(){ }
+    static void register() {
+    }
 }

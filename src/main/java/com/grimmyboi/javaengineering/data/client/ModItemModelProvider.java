@@ -13,24 +13,24 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     @Override
-    protected void registerModels(){
+    protected void registerModels() {
         blockBuilder("thermal_generator");
         blockBuilder("five_g_antenna");
         blockBuilder("monitor");
         blockBuilder("gabazon_station");
         blockBuilder("energy_pipe");
 
-        ModelFile itemGenerated= getExistingFile(mcLoc("item/generated"));
+        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
-        itemBuilder(itemGenerated,"engineer_key");
-        itemBuilder(itemGenerated,"wallet");
+        itemBuilder(itemGenerated, "engineer_key");
+        itemBuilder(itemGenerated, "wallet");
     }
 
-    private ItemModelBuilder blockBuilder(String name){
+    private ItemModelBuilder blockBuilder(String name) {
         return withExistingParent(name, "block/" + name);
     }
 
-    private ItemModelBuilder itemBuilder(ModelFile itemGenerated, String name){
-        return getBuilder(name).parent(itemGenerated).texture("layer0","item/" +name);
+    private ItemModelBuilder itemBuilder(ModelFile itemGenerated, String name) {
+        return getBuilder(name).parent(itemGenerated).texture("layer0", "item/" + name);
     }
 }

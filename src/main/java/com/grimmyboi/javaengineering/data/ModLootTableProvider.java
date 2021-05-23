@@ -23,8 +23,9 @@ public class ModLootTableProvider extends LootTableProvider {
     public ModLootTableProvider(DataGenerator p_i50789_1_) {
         super(p_i50789_1_);
     }
+
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables(){
+    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
         return ImmutableList.of(
                 Pair.of(ModBlockLootTables::new, LootParameterSets.BLOCK)
         );
@@ -35,9 +36,9 @@ public class ModLootTableProvider extends LootTableProvider {
         map.forEach((p_218436_2_, p_218436_3_) -> LootTableManager.validate(validationtracker, p_218436_2_, p_218436_3_));
     }
 
-    public static class ModBlockLootTables extends BlockLootTables{
+    public static class ModBlockLootTables extends BlockLootTables {
         @Override
-        protected void addTables(){
+        protected void addTables() {
             dropSelf(ModBlocks.THERMAL_GENERATOR.get());
             dropSelf(ModBlocks.ENERGY_PIPE.get());
             dropSelf(ModBlocks.FIVE_G_ANTENNA.get());

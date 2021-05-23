@@ -15,12 +15,12 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     @Override
-    protected void addTags(){
-        copy(ModTags.Blocks.REDSTONE_ANTENNA,ModTags.Items.REDSTONE_ANTENNA);
-        copy(ModTags.Blocks.REDSTONE_GENERATOR,ModTags.Items.REDSTONE_GENERATOR);
-        copy(ModTags.Blocks.REDSTONE_MONITOR,ModTags.Items.REDSTONE_MONITOR);
-        copy(ModTags.Blocks.REDSTONE_PIPE,ModTags.Items.REDSTONE_PIPE);
-        copy(ModTags.Blocks.REDSTONE_STATION,ModTags.Items.REDSTONE_STATION);
+    protected void addTags() {
+        copy(ModTags.Blocks.REDSTONE_ANTENNA, ModTags.Items.REDSTONE_ANTENNA);
+        copy(ModTags.Blocks.REDSTONE_GENERATOR, ModTags.Items.REDSTONE_GENERATOR);
+        copy(ModTags.Blocks.REDSTONE_MONITOR, ModTags.Items.REDSTONE_MONITOR);
+        copy(ModTags.Blocks.REDSTONE_PIPE, ModTags.Items.REDSTONE_PIPE);
+        copy(ModTags.Blocks.REDSTONE_STATION, ModTags.Items.REDSTONE_STATION);
 
         tag(ModTags.Items.TOOL_WALLET).add(ModItems.WALLET.get());
         tag(ModTags.Items.TOOL_KEY).add(ModItems.ENGINEER_KEY.get());
