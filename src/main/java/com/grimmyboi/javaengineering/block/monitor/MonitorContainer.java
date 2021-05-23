@@ -1,6 +1,5 @@
 package com.grimmyboi.javaengineering.block.monitor;
 
-import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
 import com.grimmyboi.javaengineering.setup.ModBlocks;
 import com.grimmyboi.javaengineering.setup.ModContainerTypes;
 import com.grimmyboi.javaengineering.tools.CustomEnergyStorage;
@@ -43,10 +42,7 @@ public class MonitorContainer extends Container {
         trackPower();
     }
 
-    // Setup syncing of power from server to client so that the GUI can show the amount of power in the block
     private void trackPower() {
-        // Unfortunatelly on a dedicated server ints are actually truncated to short so we need
-        // to split our integer here (split our 32 bit integer into two 16 bit integers)
         addDataSlot(new IntReferenceHolder() {
             @Override
             public int get() {
@@ -149,10 +145,9 @@ public class MonitorContainer extends Container {
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        // Player inventory
         addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
 
-        // Hotbar
+
         topRow += 58;
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }

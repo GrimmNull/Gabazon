@@ -1,13 +1,5 @@
 {
   "variants": {
-    "facing=down": {
-      "model": "javaengineering:block/five_g_antenna",
-      "x": 90
-    },
-    "facing=up": {
-      "model": "javaengineering:block/five_g_antenna",
-      "x": -90
-    },
     "facing=north": {
       "model": "javaengineering:block/five_g_antenna"
     },

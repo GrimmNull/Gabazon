@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class GabazonClient {
     public static String sendCommandToServer(String request,Integer money) throws IOException {
-        String serverAddress = "127.0.0.1"; // The server's IP address
+        String serverAddress = "127.0.0.1";
         String response;
-        int PORT = 8100; // The server's port
+        int PORT = 8100;
         try (
                 Socket socket = new Socket(serverAddress, PORT);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

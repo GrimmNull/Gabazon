@@ -3,7 +3,6 @@ package com.grimmyboi.javaengineering.setup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
 
 public class ModItems {
     public static final RegistryObject<Item> ENGINEER_KEY= Registration.ITEMS.register("engineer_key",() ->

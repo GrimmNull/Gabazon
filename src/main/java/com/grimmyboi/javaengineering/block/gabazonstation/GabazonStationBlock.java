@@ -1,9 +1,6 @@
 package com.grimmyboi.javaengineering.block.gabazonstation;
 
 
-import com.grimmyboi.javaengineering.block.energypipe.EnergyPipeTileEntity;
-import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorContainer;
-import com.grimmyboi.javaengineering.block.thermalgenerator.ThermalGeneratorTileEntity;
 import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.Block;
@@ -52,7 +49,7 @@ public class GabazonStationBlock extends Block {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
-        list.add(new TranslationTextComponent("message.station", Integer.toString(Config.THERMALGENERATOR_GENERATE.get())));
+        list.add(new TranslationTextComponent("message.station", Integer.toString(Config.GABAZONSTATION_RECEIVE.get())));
     }
 
     @Override

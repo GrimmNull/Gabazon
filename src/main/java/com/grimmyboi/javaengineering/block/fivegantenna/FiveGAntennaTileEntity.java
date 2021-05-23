@@ -6,7 +6,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.util.Direction;
@@ -19,9 +18,6 @@ public class FiveGAntennaTileEntity extends LockableTileEntity implements ISided
         super(ModTileEntityTypes.FIVE_G_ANTENNA.get());
     }
 
-    void encodeExtraData(PacketBuffer buffer){
-        //TODO
-    }
 
     @Override
     public void tick() {
