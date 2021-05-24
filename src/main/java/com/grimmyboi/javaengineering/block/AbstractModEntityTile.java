@@ -4,7 +4,6 @@ import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.tools.CustomEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;

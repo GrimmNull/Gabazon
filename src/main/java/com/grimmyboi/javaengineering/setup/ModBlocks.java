@@ -26,7 +26,7 @@ public class ModBlocks {
                     .strength(3, 10)
                     .requiresCorrectToolForDrops()
             ));
-    public static final RegistryObject<Block> FIVE_G_ANTENNA = register("five_g_antenna", () ->
+    public static final RegistryObject<FiveGAntennaBlock> FIVE_G_ANTENNA = register("five_g_antenna", () ->
             new FiveGAntennaBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
@@ -34,7 +34,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(3, 10)
             ));
-    public static final RegistryObject<Block> MONITOR = register("monitor", () ->
+    public static final RegistryObject<MonitorBlock> MONITOR = register("monitor", () ->
             new MonitorBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(1)
                     .harvestTool(ToolType.PICKAXE)
@@ -42,7 +42,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(3, 10)
             ));
-    public static final RegistryObject<Block> GABAZON_STATION = register("gabazon_station", () ->
+    public static final RegistryObject<GabazonStationBlock> GABAZON_STATION = register("gabazon_station", () ->
             new GabazonStationBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)
@@ -50,7 +50,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(3, 10)
             ));
-    public static final RegistryObject<Block> ENERGY_PIPE = register("energy_pipe", () ->
+    public static final RegistryObject<EnergyPipeBlock> ENERGY_PIPE = register("energy_pipe", () ->
             new EnergyPipeBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)
                     .harvestLevel(2)
                     .harvestTool(ToolType.PICKAXE)

@@ -2,7 +2,6 @@ package com.grimmyboi.javaengineering.block.gabazonstation;
 
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
-import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;

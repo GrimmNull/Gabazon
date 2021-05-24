@@ -5,26 +5,19 @@ import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEnti
 import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.GabazonClient;
 import com.grimmyboi.javaengineering.setup.ModTileEntityTypes;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nonnull;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class MonitorTileEntity extends AbstractModEntityTile {
     public MonitorTileEntity() {

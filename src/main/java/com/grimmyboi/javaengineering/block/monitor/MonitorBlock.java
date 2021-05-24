@@ -3,8 +3,6 @@ package com.grimmyboi.javaengineering.block.monitor;
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
 import com.grimmyboi.javaengineering.block.fivegantenna.FiveGAntennaTileEntity;
-import com.grimmyboi.javaengineering.block.gabazonstation.GabazonStationTileEntity;
-import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.GabazonClient;
 import com.grimmyboi.javaengineering.setup.ModItems;
 import net.minecraft.block.BlockState;

@@ -4,18 +4,8 @@ import com.grimmyboi.javaengineering.Main;
 import com.grimmyboi.javaengineering.block.AbstractModEntityTile;
 import com.grimmyboi.javaengineering.setup.Config;
 import com.grimmyboi.javaengineering.setup.ModTileEntityTypes;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.ItemStackHandler;
-
-import javax.annotation.Nonnull;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class GabazonStationTileEntity extends AbstractModEntityTile {
     private int money = 0;

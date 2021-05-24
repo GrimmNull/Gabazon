@@ -2,7 +2,6 @@ package com.grimmyboi.javaengineering.block.fivegantenna;
 
 
 import com.grimmyboi.javaengineering.block.AbstracModtBlock;
-import com.grimmyboi.javaengineering.setup.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
